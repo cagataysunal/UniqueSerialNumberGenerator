@@ -10,15 +10,23 @@ namespace UniqueSerialNumberGenerator
     {
         private static readonly Random random = new();
 
-        public static string GenerateSerialNumber(int length)
+        public static string GenerateSerialNumber()
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const string alphabeticChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string numericChars = "0123456789";
 
-            StringBuilder builder = new(length);
+            StringBuilder builder = new();
 
-            for (int i = 0; i < length; i++)
+            // Generate 10 alphabetic characters
+            for (int i = 0; i < 10; i++)
             {
-                builder.Append(chars[random.Next(chars.Length)]);
+                builder.Append(alphabeticChars[random.Next(alphabeticChars.Length)]);
+            }
+
+            // Generate 2 numeric characters
+            for (int i = 0; i < 2; i++)
+            {
+                builder.Append(numericChars[random.Next(numericChars.Length)]);
             }
 
             return builder.ToString();
